@@ -1,5 +1,5 @@
 
-app: webhook
+app: test-stack
 service: test-webhook
 
 
@@ -27,14 +27,14 @@ package:
     - src/**
 
 # only use on firsttime
-layers:
-  centralLibs:
-    path: layer
-    compatibleRuntimes:
-      - nodejs12.x
-    package:
-      include:
-        - node_modules/**
+# layers:
+#   centralLibs:
+#     path: layer
+#     compatibleRuntimes:
+#       - nodejs12.x
+#     package:
+#       include:
+#         - node_modules/**
 
 
 plugins:
