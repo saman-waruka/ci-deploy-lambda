@@ -103,20 +103,12 @@ jobs:
             URL_DEV_API: ${{ secrets.URL_DEV_API }}
             PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
           EOF
-      - name: Serverless install
-        run: npm install -g serverless
-      - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: eu-central-1
+
       - name: serverless deploy
-        run: serverless  deploy --stage dev
-        # uses: serverless/github-action@master
-        # with:
-        #   args: deploy --stage dev
-        # env:
-        #   AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        #   AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-        #   SLS_DEBUG: 1
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage dev
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          SLS_DEBUG: 1
