@@ -13,7 +13,8 @@
   "dependencies": {
     "axios": "^0.19.2",
     "busboy": "^0.3.1",
-    "nodejs-base64": "^1.0.3"
+    "nodejs-base64": "^1.0.3",
+    "serverless": "^2.48.1"
   },
   "devDependencies": {
     "serverless-import-config-plugin": "^0.1.1",

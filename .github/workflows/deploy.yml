@@ -93,10 +93,9 @@ jobs:
           echo $myvar
           mkdir -p $myvar/layer/nodejs
           cp $myvar/package.json $myvar/layer/nodejs  
-          cp $myvar/package-lock.json $myvar/layer/nodejs  
           cp $myvar/yarn.lock $myvar/layer/nodejs  
-      - name: NPM install in Layer
-        run: cd layer/nodejs && ls && npm install
+      - name: Yarn install in Layer
+        run: cd layer/nodejs && ls && yarn
       - name: Create env file
         run: | 
           cat > env.yml << EOF
