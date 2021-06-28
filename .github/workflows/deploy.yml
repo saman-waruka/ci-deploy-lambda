@@ -89,8 +89,8 @@ jobs:
           myvar="$PWD"
           echo $myvar
           mkdir -p $myvar/layer/nodejs
-          cp $myvar/layer/nodejs/package.json $myvar/layer/nodejs  
-          cp $myvar/layer/nodejs/package-lock.json $myvar/layer/nodejs  
+          cp $myvar/package.json $myvar/layer/nodejs  
+          cp $myvar/package-lock.json $myvar/layer/nodejs  
       - name: NPM install in Layer
         run: cd layer/nodejs && ls && npm install
       - name: Create env file
