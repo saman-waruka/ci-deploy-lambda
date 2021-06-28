@@ -103,7 +103,8 @@ jobs:
             URL_DEV_API: ${{ secrets.URL_DEV_API }}
             PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
           EOF
-
+      - name: Serverless install
+        run: npm install -g serverless
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
         with:
