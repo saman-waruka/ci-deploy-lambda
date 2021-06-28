@@ -85,6 +85,8 @@ jobs:
           node-version: 10.x
       - name: Yarn install
         run: yarn
+      - name: Serverless install
+        run: npm install -g serverless
       - name: Check current directory
         run: pwd              
       - name: Copy package.json, package-lock.json  to  layer/nodejs
@@ -108,7 +110,7 @@ jobs:
           EOF
 
       - name: serverless deploy
-        run: yarn sls deploy --stage dev
+        run: serverless  deploy --stage dev
         # uses: serverless/github-action@master
         # with:
         #   args: deploy --stage dev
