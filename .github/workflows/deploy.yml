@@ -105,7 +105,7 @@ jobs:
             PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
           EOF
       - name: serverless deploy
-        uses: serverless/github-action@v1
+        uses: serverless/github-action@master
         with:
           args: deploy --stage dev
         env:
