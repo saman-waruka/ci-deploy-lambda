@@ -11,4 +11,4 @@ functions:
         - src/module/triger-update-privacy-webhook/handler.js
         - src/helper/body.js
     layers:
-      - { Ref: ArbotenaTrigerLibsLambdaLayer }
+      - { Ref: centralLibsLambdaLayer }
