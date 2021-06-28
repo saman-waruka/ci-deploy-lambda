@@ -1,0 +1,53 @@
+service: test-webhook
+
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  stage: ${opt:stage, self:custom.defaultStage}
+  region: eu-central-1
+  # profile: myprofile
+  environment: ${self:custom.environment}
+
+
+
+package:
+  individually: true
+  exclude:
+    - .eslintignore
+    - .eslintre
+    - .prettierrc
+    - nodemon.json
+    - README.md
+    - package-lock.json
+    - yarn.lock
+    - node_modules/**
+    - src/**
+
+# only use on firsttime
+layers:
+  arbotenaTrigerLibs:
+    path: layer
+    compatibleRuntimes:
+      - nodejs12.x
+    package:
+      include:
+        - node_modules/**
+
+
+plugins:
+  - serverless-import-config-plugin
+  - serverless-offline
+
+
+# import module 
+custom:
+  import:
+    - src/module/payone-transaction-webhook/handler.yml
+    - src/module/triger-user-no-experiment/handler.yml
+    - src/module/triger-subscriber-to-register/handler.yml
+    - src/module/triger-follow-user-did-experiment-but-not-pay/handler.yml
+    - src/module/triger-update-privacy-webhook/handler.yml
+    - src/module/fanz-transaction-webhook/handler.yml
+  environment: ${file(env.yml)}
+  defaultStage: dev

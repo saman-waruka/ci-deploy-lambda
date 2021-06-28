@@ -1,0 +1,13 @@
+functions:
+  fanz-transaction:
+    handler: ./handler.fanzTransactionWebhook
+    events:
+      - http:
+         path: fanz-transaction-webhook
+         method: post
+    package:
+      include:
+        - src/module/fanz-transaction-webhook/handler.js
+        - src/helper/body.js
+    layers:
+      - { Ref: ArbotenaTrigerLibsLambdaLayer }

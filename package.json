@@ -1,0 +1,22 @@
+{
+  "name": "payone--arbotena-webhook",
+  "version": "1.0.1",
+  "description": "for send payone transaction to arbotena server ",
+  "main": "handler.js",
+  "scripts": {
+    "init-layer": "",
+    "clean-deploy": "rm -rf layer && mkdir layer && mkdir layer/nodejs &&  cp package.json layer/nodejs/package.json && cd layer/nodejs && npm install && cd .. && cd .. && sls deploy",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "busboy": "^0.3.1",
+    "nodejs-base64": "^1.0.3"
+  },
+  "devDependencies": {
+    "serverless-import-config-plugin": "^0.1.1",
+    "serverless-offline": "^6.7.0"
+  }
+}

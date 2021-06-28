@@ -1,0 +1,14 @@
+functions:
+  triger-update-privacy:
+    handler: ./handler.trigerUpdatePrivacy
+    events:
+      - http:
+          path: triger-update-privacy
+          method: post
+          cors: true
+    package:
+      include:
+        - src/module/triger-update-privacy-webhook/handler.js
+        - src/helper/body.js
+    layers:
+      - { Ref: ArbotenaTrigerLibsLambdaLayer }

@@ -1,0 +1,103 @@
+on:
+  push:
+    branches:
+      - master
+      - staging
+      - develop
+      
+name: Deploy
+jobs:
+
+  production:
+    name: production
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Yarn install
+        run: yarn
+      - name: NPM install in Layer
+        run: cd layer/nodejs && npm install
+      - name: Create env file
+        run: | 
+          cat > env.yml << EOF
+            REGISTERED_N_DAYS_AGO: 7
+            DID_EXPERIMENT_N_DAYS_AGO: 1
+            PAYONE_AUTHORIZATION_KEY: ${{ secrets.PAYONE_AUTHORIZATION_KEY }}
+            URL_DEV_API: ${{ secrets.URL_DEV_API }}
+            URL_STAGING_API: ${{ secrets.URL_STAGING_API }}
+            URL_PROD_API: ${{ secrets.URL_PROD_API }}
+            PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
+          EOF
+      - name: serverless deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage prod
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+
+  staging:
+    name: staging
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/staging'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Yarn install
+        run: yarn
+      - name: NPM install in Layer
+        run: cd layer/nodejs && npm install
+      - name: Create env file
+        run: | 
+          cat > env.yml << EOF
+            REGISTERED_N_DAYS_AGO: 7
+            DID_EXPERIMENT_N_DAYS_AGO: 1
+            PAYONE_AUTHORIZATION_KEY: ${{ secrets.PAYONE_AUTHORIZATION_KEY }}
+            URL_DEV_API: ${{ secrets.URL_DEV_API }}
+            URL_STAGING_API: ${{ secrets.URL_STAGING_API }}
+          EOF
+      - name: serverless deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage staging
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+  develop:
+    name: develop
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/develop'
+    steps:
+      - uses: actions/checkout@v1
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10.x
+      - name: Yarn install
+        run: yarn
+      - name: NPM install in Layer
+        run: cd layer/nodejs && npm install
+      - name: Create env file
+        run: | 
+          cat > env.yml << EOF
+            REGISTERED_N_DAYS_AGO: 7
+            DID_EXPERIMENT_N_DAYS_AGO: 1
+            PAYONE_AUTHORIZATION_KEY: ${{ secrets.PAYONE_AUTHORIZATION_KEY }}
+            URL_LOCAL_API: ${{ secrets.URL_LOCAL_API }}
+            URL_DEV_API: ${{ secrets.URL_DEV_API }}
+            PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
+          EOF
+      - name: serverless deploy
+        uses: serverless/github-action@master
+        with:
+          args: deploy --stage dev
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}

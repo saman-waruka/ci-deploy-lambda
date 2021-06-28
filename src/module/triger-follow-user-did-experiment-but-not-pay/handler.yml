@@ -1,0 +1,17 @@
+functions:
+  user-did-experiment-but-not-pay:
+    handler: ./handler.trigerSendmailFollowUserToMakePayment
+    events:
+      - schedule:
+        # trigger at UTC 4.00 everyday ; https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
+          rate: cron(0 4 * * ? *)
+          enabled: true
+      - http:
+          path: triger-follow-user-did-experiment-but-not-pay
+          method: post
+          cors: true
+    package:
+      include:
+        - src/module/triger-follow-user-did-experiment-but-not-pay/handler.js
+    layers:
+      - { Ref: ArbotenaTrigerLibsLambdaLayer }

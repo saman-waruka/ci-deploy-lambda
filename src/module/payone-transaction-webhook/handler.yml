@@ -1,0 +1,13 @@
+functions:
+  payone-transaction:
+    handler: ./handler.payoneTransactionWebhook
+    events:
+      - http:
+         path: transaction-webhook
+         method: post
+    package:
+      include:
+        - src/module/payone-transaction-webhook/handler.js
+        - src/helper/body.js
+    layers:
+      - { Ref: ArbotenaTrigerLibsLambdaLayer }

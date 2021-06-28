@@ -1,0 +1,17 @@
+functions:
+  triger-subscriber-to-register:
+    handler: ./handler.trigerSendmailSubscriberToRegister
+    events:
+      - schedule:
+        # trigger at UTC 4.00 everyday ; https://docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
+          rate: cron(0 4 * * ? *)
+          enabled: true
+      - http:
+          path: triger-sendmail-subscriber-to-register
+          method: post
+          cors: true
+    package:
+      include:
+        - src/module/triger-subscriber-to-register/handler.js
+    layers:
+      - { Ref: ArbotenaTrigerLibsLambdaLayer }

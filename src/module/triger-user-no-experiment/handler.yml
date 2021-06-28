@@ -1,0 +1,17 @@
+functions:
+  trigger-user-no-experiment:
+    handler: ./handler.trigerSendmailToUserNoExperiment
+    events:
+      - schedule:
+      # trigger at UTC 4.00 everyday ; https:  //docs.aws.amazon.com/eventbridge/latest/userguide/scheduled-events.html
+          rate: cron(0 4 * * ? *)
+          enabled: true
+      - http:
+          path: triger-sendmail-to-user-no-experiment
+          method: post
+          cors: true
+    package:
+      include:
+        - src/module/triger-user-no-experiment/handler.js
+    layers:
+      - { Ref: ArbotenaTrigerLibsLambdaLayer }
