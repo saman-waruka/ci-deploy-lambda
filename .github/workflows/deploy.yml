@@ -91,6 +91,7 @@ jobs:
           mkdir -p $myvar/layer/nodejs
           cp $myvar/package.json $myvar/layer/nodejs  
           cp $myvar/package-lock.json $myvar/layer/nodejs  
+          cp $myvar/yarn.lock $myvar/layer/nodejs  
       - name: NPM install in Layer
         run: cd layer/nodejs && ls && npm install
       - name: Create env file
@@ -104,7 +105,7 @@ jobs:
             PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
           EOF
       - name: serverless deploy
-        uses: serverless/github-action@master
+        uses: serverless/github-action@v1
         with:
           args: deploy --stage dev
         env:
