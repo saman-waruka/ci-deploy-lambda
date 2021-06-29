@@ -20,8 +20,15 @@ jobs:
           node-version: 10.x
       - name: Yarn install
         run: yarn
-      - name: NPM install in Layer
-        run: cd layer/nodejs && npm install
+      - name: Copy package.json, package-lock.json  to  layer/nodejs
+        run: |
+          myvar="$PWD"
+          echo $myvar
+          mkdir -p $myvar/layer/nodejs
+          cp $myvar/package.json $myvar/layer/nodejs  
+          cp $myvar/yarn.lock $myvar/layer/nodejs  
+      - name: Yarn install in Layer
+        run: cd layer/nodejs && yarn
       - name: Create env file
         run: | 
           cat > env.yml << EOF
@@ -53,8 +60,15 @@ jobs:
           node-version: 10.x
       - name: Yarn install
         run: yarn
+      - name: Copy package.json, package-lock.json  to  layer/nodejs
+        run: |
+          myvar="$PWD"
+          echo $myvar
+          mkdir -p $myvar/layer/nodejs
+          cp $myvar/package.json $myvar/layer/nodejs  
+          cp $myvar/yarn.lock $myvar/layer/nodejs          
       - name: NPM install in Layer
-        run: cd layer/nodejs && npm install
+        run: cd layer/nodejs && Yarn
       - name: Create env file
         run: | 
           cat > env.yml << EOF
