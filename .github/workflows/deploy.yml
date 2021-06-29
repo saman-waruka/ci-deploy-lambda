@@ -28,7 +28,7 @@ jobs:
           cp $working_dir/package.json $working_dir/layer/nodejs  
           cp $working_dir/yarn.lock $working_dir/layer/nodejs  
       - name: Yarn install in Layer
-        run: cd layer/nodejs && yarn
+        run: cd layer/nodejs && yarn install --production
       - name: Create env file
         run: | 
           cat > env.yml << EOF
@@ -68,7 +68,7 @@ jobs:
           cp $working_dir/package.json $working_dir/layer/nodejs  
           cp $working_dir/yarn.lock $working_dir/layer/nodejs          
       - name: NPM install in Layer
-        run: cd layer/nodejs && Yarn
+        run: cd layer/nodejs && yarn install --production
       - name: Create env file
         run: | 
           cat > env.yml << EOF
@@ -107,7 +107,7 @@ jobs:
           cp $working_dir/package.json $working_dir/layer/nodejs  
           cp $working_dir/yarn.lock $working_dir/layer/nodejs  
       - name: Yarn install in Layer
-        run: cd layer/nodejs && ls && yarn
+        run: cd layer/nodejs && ls && yarn install --production
       - name: Create env file
         run: | 
           cat > env.yml << EOF
