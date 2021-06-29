@@ -26,15 +26,15 @@ package:
     - node_modules/**
     - src/**
 
-# only use on firsttime
-# layers:
-#   centralLibs:
-#     path: layer
-#     compatibleRuntimes:
-#       - nodejs12.x
-#     package:
-#       include:
-#         - node_modules/**
+# only use on firsttime in local
+layers:
+  centralLibs:
+    path: layer
+    compatibleRuntimes:
+      - nodejs12.x
+    package:
+      include:
+        - node_modules/**
 
 
 plugins:
