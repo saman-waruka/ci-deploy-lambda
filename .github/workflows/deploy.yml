@@ -117,7 +117,7 @@ jobs:
       - name: serverless deploy
         uses: tegud/serverless-github-action@1.52.0
         with:
-          command: deploy
+          command: deploy --stage dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
