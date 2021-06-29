@@ -117,7 +117,7 @@ jobs:
       #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #     SLS_DEBUG: 1
 
-    - name: serverless deploy
-      uses: Teakowa/serverless-action@master
-      with:
-        args: --stage dev deploy
+      - name: serverless deploy
+        uses: Teakowa/serverless-action@master
+        with:
+          args: --stage dev deploy
