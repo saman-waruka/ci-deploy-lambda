@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - master
+      - main
       - staging
       - develop
 
@@ -12,7 +12,7 @@ jobs:
   production:
     name: production
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     steps:
       - uses: actions/checkout@v1
       - uses: actions/setup-node@v1
