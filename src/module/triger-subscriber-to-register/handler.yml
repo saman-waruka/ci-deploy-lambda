@@ -14,4 +14,4 @@ functions:
       include:
         - src/module/triger-subscriber-to-register/handler.js
     layers:
-      - { Ref: ArbotenaTrigerLibsLambdaLayer }
+      - { Ref: CentralLibsLambdaLayer }

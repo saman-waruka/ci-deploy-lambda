@@ -55,6 +55,8 @@ module.exports.trigerSendmailToUserNoExperiment = async (event) => {
     );
     console.log(results);
 
+    console.log({ a: 555566666 });
+
     return {
       statusCode: 200,
       body: "OK",

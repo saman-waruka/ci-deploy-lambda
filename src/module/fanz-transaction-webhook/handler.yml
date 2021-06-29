@@ -10,4 +10,4 @@ functions:
         - src/module/fanz-transaction-webhook/handler.js
         - src/helper/body.js
     layers:
-      - { Ref: ArbotenaTrigerLibsLambdaLayer }
+      - { Ref: CentralLibsLambdaLayer }
