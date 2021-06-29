@@ -4,10 +4,7 @@ on:
       - master
       - staging
       - develop
-env:
-  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-  AWS_DEFAULT_REGION: ap-southeast-1
+
         
 name: Deploy
 jobs:
@@ -117,7 +114,10 @@ jobs:
       #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
       #     SLS_DEBUG: 1
 
-      - name: serverless deploy
-        uses: Teakowa/serverless-action@master
-        with:
-          args: --stage dev deploy
+    - name: serverless deploy
+      uses: tegud/serverless-github-action@1.52.0
+      with:
+        command: deploy
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
