@@ -34,7 +34,7 @@ jobs:
             PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
           EOF
       - name: serverless deploy
-        uses: serverless/github-action@master
+        uses: Teakowa/serverless-action@master
         with:
           args: deploy --stage prod
         env:
@@ -65,7 +65,7 @@ jobs:
             URL_STAGING_API: ${{ secrets.URL_STAGING_API }}
           EOF
       - name: serverless deploy
-        uses: serverless/github-action@master
+        uses: Teakowa/serverless-action@master
         with:
           args: deploy --stage staging
         env:
