@@ -115,9 +115,9 @@ jobs:
       #     SLS_DEBUG: 1
 
       - name: serverless deploy
-        uses: tegud/serverless-github-action@1.52.0
+        uses: Teakowa/serverless-action@master
         with:
-          command: --stage dev deploy
+          args: --stage dev deploy
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
