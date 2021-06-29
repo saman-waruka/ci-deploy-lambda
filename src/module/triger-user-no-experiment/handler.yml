@@ -14,4 +14,4 @@ functions:
       include:
         - src/module/triger-user-no-experiment/handler.js
     layers:
-      - { Ref: centralLibsLambdaLayer }
+      - { Ref: CentralLibsLambdaLayer }
