@@ -22,11 +22,11 @@ jobs:
         run: yarn
       - name: Copy package.json, package-lock.json  to  layer/nodejs
         run: |
-          myvar="$PWD"
-          echo $myvar
-          mkdir -p $myvar/layer/nodejs
-          cp $myvar/package.json $myvar/layer/nodejs  
-          cp $myvar/yarn.lock $myvar/layer/nodejs  
+          working_dir="$PWD"
+          echo $working_dir
+          mkdir -p $working_dir/layer/nodejs
+          cp $working_dir/package.json $working_dir/layer/nodejs  
+          cp $working_dir/yarn.lock $working_dir/layer/nodejs  
       - name: Yarn install in Layer
         run: cd layer/nodejs && yarn
       - name: Create env file
@@ -62,11 +62,11 @@ jobs:
         run: yarn
       - name: Copy package.json, package-lock.json  to  layer/nodejs
         run: |
-          myvar="$PWD"
-          echo $myvar
-          mkdir -p $myvar/layer/nodejs
-          cp $myvar/package.json $myvar/layer/nodejs  
-          cp $myvar/yarn.lock $myvar/layer/nodejs          
+          working_dir="$PWD"
+          echo $working_dir
+          mkdir -p $working_dir/layer/nodejs
+          cp $working_dir/package.json $working_dir/layer/nodejs  
+          cp $working_dir/yarn.lock $working_dir/layer/nodejs          
       - name: NPM install in Layer
         run: cd layer/nodejs && Yarn
       - name: Create env file
@@ -101,11 +101,11 @@ jobs:
         run: pwd              
       - name: Copy package.json, package-lock.json  to  layer/nodejs
         run: |
-          myvar="$PWD"
-          echo $myvar
-          mkdir -p $myvar/layer/nodejs
-          cp $myvar/package.json $myvar/layer/nodejs  
-          cp $myvar/yarn.lock $myvar/layer/nodejs  
+          working_dir="$PWD"
+          echo $working_dir
+          mkdir -p $working_dir/layer/nodejs
+          cp $working_dir/package.json $working_dir/layer/nodejs  
+          cp $working_dir/yarn.lock $working_dir/layer/nodejs  
       - name: Yarn install in Layer
         run: cd layer/nodejs && ls && yarn
       - name: Create env file
