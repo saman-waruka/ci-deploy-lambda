@@ -4,7 +4,11 @@ on:
       - master
       - staging
       - develop
-      
+env:
+  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  AWS_DEFAULT_REGION: ap-southeast-1
+        
 name: Deploy
 jobs:
 
@@ -104,11 +108,16 @@ jobs:
             PRISMIC_SECRET: ${{ secrets.PRISMIC_SECRET }}
           EOF
 
+      # - name: serverless deploy
+      #   uses: serverless/github-action@master
+      #   with:
+      #     args:  --stage dev deploy
+      #   env:
+      #     AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+      #     AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      #     SLS_DEBUG: 1
+
       - name: serverless deploy
-        uses: serverless/github-action@master
+       uses: Teakowa/serverless-action@master
         with:
-          args:  --stage dev deploy
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          SLS_DEBUG: 1
+          args: --stage dev deploy
