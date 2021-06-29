@@ -117,7 +117,7 @@ jobs:
       - name: serverless deploy
         uses: Teakowa/serverless-action@master
         with:
-          args: --stage dev deploy
+          args: deploy --stage dev
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
