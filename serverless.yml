@@ -1,3 +1,5 @@
+
+app: test-stack
 service: test-webhook
 
 
@@ -6,7 +8,7 @@ provider:
   runtime: nodejs12.x
   stage: ${opt:stage, self:custom.defaultStage}
   region: eu-central-1
-  # profile: myprofile
+  # profile: myprofile #this line for deploy from local
   environment: ${self:custom.environment}
 
 
@@ -25,14 +27,14 @@ package:
     - src/**
 
 # only use on firsttime
-layers:
-  arbotenaTrigerLibs:
-    path: layer
-    compatibleRuntimes:
-      - nodejs12.x
-    package:
-      include:
-        - node_modules/**
+# layers:
+#   centralLibs:
+#     path: layer
+#     compatibleRuntimes:
+#       - nodejs12.x
+#     package:
+#       include:
+#         - node_modules/**
 
 
 plugins:

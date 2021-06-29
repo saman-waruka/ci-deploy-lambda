@@ -14,4 +14,4 @@ functions:
       include:
         - src/module/triger-follow-user-did-experiment-but-not-pay/handler.js
     layers:
-      - { Ref: ArbotenaTrigerLibsLambdaLayer }
+      - { Ref: centralLibsLambdaLayer }
